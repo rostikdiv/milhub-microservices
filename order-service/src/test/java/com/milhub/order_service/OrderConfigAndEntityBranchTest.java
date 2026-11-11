@@ -324,8 +324,9 @@ class OrderConfigAndEntityBranchTest {
         assertEquals("Seller Name", sellerDTO.companyName());
         assertTrue(sellerDTO.isVerified());
 
-        PaymentRequestDTO payReq = new PaymentRequestDTO(uuid, uuid, BigDecimal.TEN);
+        PaymentRequestDTO payReq = new PaymentRequestDTO(uuid, uuid, BigDecimal.TEN, "PAY_ORDER_" + uuid);
         assertEquals(BigDecimal.TEN, payReq.amount());
+        assertEquals("PAY_ORDER_" + uuid, payReq.idempotencyKey());
 
         PaymentResponseDTO payRes = new PaymentResponseDTO(uuid, "PAID", "http://pay");
         assertEquals("PAID", payRes.status());

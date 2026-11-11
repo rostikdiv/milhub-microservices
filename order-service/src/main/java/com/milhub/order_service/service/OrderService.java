@@ -206,7 +206,8 @@ public class OrderService {
             PaymentRequestDTO paymentRequest = new PaymentRequestDTO(
                     order.getId(),
                     userId,
-                    totalOrderPrice);
+                    totalOrderPrice,
+                    "PAY_ORDER_" + order.getId());
 
             return paymentIntegrationService.initPayment(paymentRequest);
 

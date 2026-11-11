@@ -9,5 +9,6 @@ import java.util.UUID;
 public record PaymentRequestDTO(
                 UUID orderId,
                 UUID userId,
-                BigDecimal amount) {
+                BigDecimal amount,
+                String idempotencyKey) {
 }

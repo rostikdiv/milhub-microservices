@@ -87,7 +87,7 @@ class IntegrationServicesTest {
 
         UUID orderId = UUID.randomUUID();
         UUID userId = UUID.randomUUID();
-        PaymentRequestDTO request = new PaymentRequestDTO(orderId, userId, BigDecimal.valueOf(250));
+        PaymentRequestDTO request = new PaymentRequestDTO(orderId, userId, BigDecimal.valueOf(250), "PAY_ORDER_" + orderId);
         PaymentResponseDTO response = new PaymentResponseDTO(UUID.randomUUID(), "PENDING", "http://pay.url");
 
         when(paymentServiceClient.initPayment(request)).thenReturn(response);
