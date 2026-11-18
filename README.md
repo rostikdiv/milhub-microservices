@@ -9,11 +9,11 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-7.0-green.svg)](https://www.mongodb.com/)
 [![Redis](https://img.shields.io/badge/Redis-7.2-red.svg)](https://redis.io/)
 [![Google Cloud Run](https://img.shields.io/badge/GCP-Cloud%20Run-4285F4.svg)](https://cloud.google.com/run)
-[![Vercel](https://img.shields.io/badge/Vercel-Deployed-black.svg)](https://vercel.com/)
+[![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC.svg?logo=terraform)](https://www.terraform.io/)
 
-* **Live Web Application (Frontend)**: [https://milhub-frontend.vercel.app](https://milhub-frontend.vercel.app)
-* **Production API Gateway (Backend)**: [https://milhub-api-gateway-258044247462.us-central1.run.app](https://milhub-api-gateway-258044247462.us-central1.run.app)
-* **Frontend Repository**: [https://github.com/rostikdiv/milhub-frontend.git](https://github.com/rostikdiv/milhub-frontend.git)
+* **Frontend Repository**: [https://github.com/rostikdiv/milhub-frontend](https://github.com/rostikdiv/milhub-frontend)
+
+> ☁️ **Deployment Note:** The GCP cloud environment (Cloud Run, Cloud SQL, Compute Engine, MongoDB Atlas) was provisioned via Terraform and verified in production, and is currently **paused** to avoid ongoing cloud costs. Launch the full infrastructure locally via `docker-compose up -d`.
 
 ---
 
@@ -179,7 +179,7 @@ ADMIN_LAST_NAME=Admin
 
 ```bash
 # Example Authentication Request
-curl -X POST https://milhub-api-gateway-258044247462.us-central1.run.app/api/v1/auth/login \
+curl -X POST http://localhost:8080/api/v1/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "admin@milhub.ua",
@@ -191,7 +191,7 @@ curl -X POST https://milhub-api-gateway-258044247462.us-central1.run.app/api/v1/
 
 ## ☁️ Google Cloud Platform (GCP) Infrastructure
 
-The production backend runs on a fully managed serverless infrastructure on **Google Cloud Platform**:
+The cloud-ready backend is provisioned via **Terraform** on a managed serverless and compute infrastructure in **Google Cloud Platform** (currently paused to avoid ongoing costs):
 
 - **Google Artifact Registry (GAR)**: Private Docker registry storing built microservice container images (`us-central1-docker.pkg.dev/parkflow-cloud/milhub-repo`).
 - **Google Cloud Run**: Serverless container execution with automated scaling, VPC egress connector, and zero idle overhead.
